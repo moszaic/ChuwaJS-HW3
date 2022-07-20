@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <title>Test</title>
+    <link rel="stylesheet" href="hw3.css" />
+  </head>
+  <body>
+    <a>DOM Learning</a>
+
+    <script>
+      const tableInfo = {
+        tableHeader: ["Student Name", "Age", "Phone", "Address"],
+        tableContent: [
+          {
+            "Student Name": "John",
+            Age: 19,
+            Phone: "455 - 983 - 0903",
+            Address: "123 Ave, San Francisco, CA, 94011",
+          },
+          {
+            "Student Name": "Alex",
+            Age: 21,
+            Phone: "455 - 983 - 0912",
+            Address: "456 Rd, San Francisco, CA, 94012",
+          },
+          {
+            "Student Name": "Josh",
+            Age: 22,
+            Phone: "455 - 345 - 0912",
+            Address: "789 Dr, Newark, CA, 94016",
+          },
+          {
+            "Student Name": "Matt",
+            Age: 23,
+            Phone: "321 - 345 - 0912",
+            Address: "223 Dr, Sunnyvale, CA, 94016",
+          },
+        ],
+      };
+      const list = ["HTML", "JavaScript", "CSS", "React", "Redux", "Java"];
+      const dropDownList = [
+        { value: "newark", content: "Newark" },
+        { value: "santaClara", content: "Santa Clara" },
+        { value: "unionCity", content: "Union City" },
+        { value: "albany", content: "Albany" },
+        { value: "dalyCity", content: "Daly City" },
+        { value: "sanJose", content: "San Jose" },
+      ];
+      /*-------------------------------*/
+      const tableHead = document.createElement("thead");
+      const tableBody = document.createElement("tbody");
+      let j = 0;
+      let i = 0;
+
+      function makeTable() {
+        let tableID = document.getElementById("theTable");
+        let table = document.createElement("table");
+        tableID.appendChild(table);
+        table.appendChild(tableHead);
+        table.appendChild(tableBody);
+
+        let th = tableInfo.tableHeader.map((i) => {
+          let theader = document.createElement("th");
+          theader.textContent = i;
+          return theader;
+        });
+        tableHead.append(...th);
+        let namer = document.getElementById("theNames");
+        namer.style.display = "block";
+      }
+
+      function addNames() {
+        let names = [];
+        tableInfo.tableContent.forEach((i) => {
+          console.log(i);
+          names.push(i["Student Name"]);
+        });
+        let tcname = names.map((i) => {
+          let namecol = document.createElement("tr");
+          namecol.textContent = i;
+
+          return namecol;
+        });
+        tableBody.append(...tcname);
+        let a = document.getElementById("theAges");
+        a.style.display = "block";
+        let b = document.getElementById("thePhones");
+        b.style.display = "block";
+        let c = document.getElementById("theAddresses");
+        c.style.display = "block";
+        let d = document.getElementById("theNames");
+        d.style.display = "none";
+      }
+
+      function addAges() {
+        let ages = [];
+        tableInfo.tableContent.forEach((i) => {
+          console.log(i);
+          ages.push(i.Age);
+        });
+        tester = document.querySelector("tr");
+        for (i = 0; i < ages.length; i++) {
+          let j = document.createElement("td");
+          j.textContent = ages[i];
+          tester.appendChild(j);
+          tester = tester.nextSibling;
+        }
+        let a = document.getElementById("theAges");
+        a.style.display = "none";
+      }
+
+      function addPhones() {
+        let phones = [];
+        tableInfo.tableContent.forEach((i) => {
+          console.log(i);
+          phones.push(i.Phone);
+        });
+        tester = document.querySelector("tr");
+        for (i = 0; i < phones.length; i++) {
+          let j = document.createElement("td");
+          j.textContent = phones[i];
+          tester.appendChild(j);
+          tester = tester.nextSibling;
+        }
+        let a = document.getElementById("thePhones");
+        a.style.display = "none";
+      }
+
+      function addAddresses() {
+        let addresses = [];
+        tableInfo.tableContent.forEach((i) => {
+          console.log(i);
+          addresses.push(i.Address);
+        });
+        tester = document.querySelector("tr");
+        for (i = 0; i < addresses.length; i++) {
+          let j = document.createElement("td");
+          j.textContent = addresses[i];
+          tester.appendChild(j);
+          tester = tester.nextSibling;
+        }
+        let a = document.getElementById("theAddresses");
+        a.style.display = "none";
+      }
+
+      function unorderedAdd() {
+        const uli = document.createElement("ul");
+        const ulitext = document.createTextNode(list[i]);
+        i++;
+        if (i == list.length) {
+          i = 0;
+        }
+        uli.appendChild(ulitext);
+        document.getElementById("q2a").appendChild(uli);
+      }
+
+      function orderedAdd() {
+        const li = document.createElement("li");
+        const litext = document.createTextNode(list[j]);
+        j++;
+        if (j == list.length) {
+          j = 0;
+        }
+        li.appendChild(litext);
+        document.getElementById("q2b").appendChild(li);
+      }
+
+      function addOptions() {
+        let z = document.getElementById("q3");
+        let a = document.createElement("select");
+        dropDownList.map((i) => {
+          let b = document.createElement("option");
+          b.value = i.value;
+          b.text = i.content;
+          a.appendChild(b);
+        });
+        z.appendChild(a);
+      }
+    </script>
+
+    <div id="theTable">
+      <button onclick="makeTable()">Make Table</button>
+    </div>
+    <div id="theNames">
+      <button onclick="addNames()">Add Names</button>
+    </div>
+    <div id="theAges">
+      <button onclick="addAges()">Add Ages</button>
+    </div>
+    <div id="thePhones">
+      <button onclick="addPhones()">Add Phone Numbers</button>
+    </div>
+    <div id="theAddresses">
+      <button onclick="addAddresses()">Add Adresses</button>
+    </div>
+    <ul id="q2a">
+      <button onclick="unorderedAdd()">Unordered Add</button>
+    </ul>
+    <li id="q2b">
+      <button onclick="orderedAdd()">Ordered Add</button>
+    </li>
+    <div id="q3">
+      <button onclick="addOptions()">Add Options</button>
+    </div>
+  </body>
+</html>
